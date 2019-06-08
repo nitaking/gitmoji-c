@@ -1,19 +1,17 @@
-import {Command, flags} from '@oclif/command'
+import {Command} from '@oclif/command'
 import {prompt} from 'enquirer'
 import * as execa from 'execa'
 
 interface IAnswer {
-  gitmoji: string;
-  title: string;
-  message: string;
+  gitmoji: string
+  title: string
+  message: string
 }
 
 export default class Hello extends Command {
   static description = 'Interactively commit using the prompts'
 
   async run() {
-    // const {args, flags} = this.parse(Hello)
-
     const answer: IAnswer = await prompt([
       {
         type: 'input',
@@ -44,14 +42,18 @@ export default class Hello extends Command {
   }
 
   private async commit(title: string, message: string) {
-    const {stdout} = await execa('git', [
+    const {stdout} = await execa('git', this.getCommitMessage(title, message))
+    return stdout
+  }
+
+  private getCommitMessage(title: string, message: string) {
+    return [
       'commit',
       '-m',
       title,
       '-m',
       message,
-    ])
-    return stdout
+    ]
   }
 
   private errorMessage(message: string) {
