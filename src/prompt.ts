@@ -9,11 +9,6 @@ interface IAutoCompletePromptValue {
   name: string
   value: string
 }
-interface IAnswer {
-  gitmoji: string
-  title: string
-  message: string
-}
 
 const displayValue = (gitmojis: IGitmoji[]): IAutoCompletePromptValue[] => {
   return gitmojis.map((gitmoji: IGitmoji) => ({
