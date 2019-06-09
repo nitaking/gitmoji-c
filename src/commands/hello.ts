@@ -1,8 +1,8 @@
 import {Command, flags} from '@oclif/command'
 
 export default class Hello extends Command {
+  static hidden = true
   static description = 'describe the command here'
-
   static examples = [
     `$ gitmoji hello
 hello world from ./src/hello.ts!
