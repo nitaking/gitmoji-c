@@ -8,7 +8,7 @@ interface IAnswer {
   message: string
 }
 
-export default class Hello extends Command {
+export default class Commit extends Command {
   static description = 'Interactively commit using the prompts'
 
   async run() {
@@ -42,18 +42,14 @@ export default class Hello extends Command {
   }
 
   private async commit(title: string, message: string) {
-    const {stdout} = await execa('git', this.getCommitMessage(title, message))
-    return stdout
-  }
-
-  private getCommitMessage(title: string, message: string) {
-    return [
+    const {stdout} = await execa('git', [
       'commit',
       '-m',
       title,
       '-m',
       message,
-    ]
+    ])
+    return stdout
   }
 
   private errorMessage(message: string) {
