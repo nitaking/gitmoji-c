@@ -1,7 +1,7 @@
 {
   "name": "gitmoji-c",
-  "description": "gitmoji cli tool.",
-  "version": "0.0.0",
+  "description": "gitmoji-c is a gitmoji-cli clone tool that does not use gpg.",
+  "version": "0.0.1",
   "author": "nitaking @nitaking",
   "bin": {
     "gitmoji": "./bin/run"
