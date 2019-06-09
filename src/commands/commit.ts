@@ -14,6 +14,7 @@ export default class Commit extends Command {
 
   async run() {
     try {
+      // @ts-ignore
       const answer = await inquirer.prompt(questions)
 
       const title = `${answer.gitmoji} ${answer.title}`
