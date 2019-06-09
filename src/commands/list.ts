@@ -1,6 +1,7 @@
 import {Command, flags} from '@oclif/command'
-import axios from 'axios'
 import chalk from 'chalk'
+
+import {gitmojis} from '../utils'
 
 interface IGitmoji {
   emoji: string
@@ -9,13 +10,6 @@ interface IGitmoji {
   description: string
   name: string
 }
-
-const base = axios.create({
-  baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
-  timeout: 5000,
-  headers: {},
-  params: {}
-})
 
 export default class List extends Command {
   static description = 'List all the available gitmojis'
@@ -65,10 +59,9 @@ export default class List extends Command {
 
   private async get() {
     try {
-      const res = await base.get('/src/data/gitmojis.json')
-      this.log(`${chalk.yellow('Gitmojis')} updated successfully!`)
+      const res = await gitmojis()
 
-      return res.data.gitmojis
+      return res
 
     } catch (error) {
       this.log(`Network connection not found - ${error.code}`)

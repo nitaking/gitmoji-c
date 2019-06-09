@@ -1,39 +1,24 @@
 import {Command} from '@oclif/command'
-import {prompt} from 'enquirer'
+// import {AutoComplete, prompt} from 'enquirer'
 import * as execa from 'execa'
+import * as inquirer from 'inquirer'
 
-interface IAnswer {
-  gitmoji: string
-  title: string
-  message: string
-}
+import {questions} from '../prompt'
+
+inquirer.registerPrompt(
+  'autocomplete', require('inquirer-autocomplete-prompt')
+)
 
 export default class Commit extends Command {
   static description = 'Interactively commit using the prompts'
 
   async run() {
-    const answer: IAnswer = await prompt([
-      {
-        type: 'input',
-        name: 'gitmoji',
-        message: 'Choose a gitmoji:', // todo: sourceにして、gitmojiAPIの結果を載せる
-      },
-      {
-        type: 'input',
-        name: 'title',
-        message: 'Enter the commit title',
-      },
-      {
-        type: 'input',
-        name: 'message',
-        message: 'Enter the commit message:',
-      },
-    ])
-
-    const title = `${answer.gitmoji} ${answer.title}`
-    const body = `${answer.message}`
-
     try {
+      const answer = await inquirer.prompt(questions)
+
+      const title = `${answer.gitmoji} ${answer.title}`
+      const body = `${answer.message}`
+
       const result = await this.commit(title, body)
       this.log(result)
     } catch (e) {
