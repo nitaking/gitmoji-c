@@ -6,7 +6,7 @@ gitmoji-c is a [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli) clone 
 # Install
 
 ```
-$ yarn global add gitmoji-cli
+$ yarn global add gitmoji-c
 ```
 
 # Usage
