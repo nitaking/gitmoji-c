@@ -3,7 +3,7 @@ gitmoji-c
 
 gitmoji-c is a [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli) clone tool that does not use gpg.
 
-![2019-06-19 07 40 00](https://user-images.githubusercontent.com/10850034/59724713-d0909800-9265-11e9-815c-31b8838ece3c.gif)
+![2019-06-21 09 44 06](https://user-images.githubusercontent.com/10850034/59889833-35d0be80-9409-11e9-93b1-dd76da26d442.gif)
 
 # Install
 
