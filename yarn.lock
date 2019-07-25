@@ -1175,22 +1175,6 @@ github-slugger@^1.2.1:
   dependencies:
     emoji-regex ">=6.0.0 <=6.1.1"
 
-gitmoji-c@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/gitmoji-c/-/gitmoji-c-0.0.3.tgz#767422389be125066b8c5b82e45f2e894f1a1518"
-  integrity sha512-JjwsO9etBUtNt3TfC0cjDlnRXoMMlxtumYju+yl1DfrYg7lu4acQhqrOUAc63s7JIxgiIP121GfBbtvxMEa1wA==
-  dependencies:
-    "@oclif/command" "^1"
-    "@oclif/config" "^1"
-    "@oclif/plugin-help" "^2"
-    axios "^0.19.0"
-    chalk "^2.4.2"
-    execa "^1.0.0"
-    inquirer "^6.3.1"
-    inquirer-autocomplete-prompt "^1.0.1"
-    listr "^0.14.3"
-    tslib "^1"
-
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -1830,9 +1814,9 @@ lodash.templatesettings@^4.0.0:
     lodash._reinterpolate "~3.0.0"
 
 lodash@^4.17.11:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 log-symbols@^1.0.2:
   version "1.0.2"
