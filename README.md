@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/nitaking/gitmoji-c/maintainability"><img src="https://api.codeclimate.com/v1/badges/43280ad2293c1c1d1be5/maintainability" /></a> <a href="https://codeclimate.com/github/nitaking/gitmoji-c/test_coverage"><img src="https://api.codeclimate.com/v1/badges/43280ad2293c1c1d1be5/test_coverage" /></a>
+
 gitmoji-c
 =========
 
