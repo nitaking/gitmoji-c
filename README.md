@@ -1,50 +1,69 @@
-<a href="https://codeclimate.com/github/nitaking/gitmoji-c/maintainability"><img src="https://api.codeclimate.com/v1/badges/43280ad2293c1c1d1be5/maintainability" /></a> <a href="https://codeclimate.com/github/nitaking/gitmoji-c/test_coverage"><img src="https://api.codeclimate.com/v1/badges/43280ad2293c1c1d1be5/test_coverage" /></a>
+[![CI](https://github.com/nitaking/gitmoji-c/actions/workflows/ci.yml/badge.svg)](https://github.com/nitaking/gitmoji-c/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/npm/v/gitmoji-c.svg)](https://npmjs.org/package/gitmoji-c)
 [![Downloads/week](https://img.shields.io/npm/dw/gitmoji-c.svg)](https://npmjs.org/package/gitmoji-c)
 
-gitmoji-c
-=========
+# gitmoji-c
 
 gitmoji-c is a [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli) clone tool that does not use gpg.
 
 ![2019-06-21 09 44 06](https://user-images.githubusercontent.com/10850034/59889833-35d0be80-9409-11e9-93b1-dd76da26d442.gif)
 
-# Install
+## Requirements
+
+- Node.js >= 20
+
+## Install
 
 ```
-$ yarn global add gitmoji-c
+$ pnpm add -g gitmoji-c
 ```
 
-# Usage
+or
+
+```
+$ npm i -g gitmoji-c
+```
+
+## Usage
 
 ```
 $ gitmoji --help
 ```
 
-## Commit
+### Commit
+
+Interactively commit using gitmoji prompts.
 
 ```
 $ gitmoji commit
 ```
+
 ![2019-06-19 07 40 52](https://user-images.githubusercontent.com/10850034/59724737-dedeb400-9265-11e9-9d39-76beec62f99c.gif)
 
-## List
+### List
+
+List all available gitmojis.
 
 ```
 $ gitmoji list
 ```
 
-## Search
+### Search
+
+Search gitmojis by keyword.
 
 ```
-$ gitmoji list <search word>
+$ gitmoji search bug
+🐛 - :bug: - Fix a bug.
 ```
 
-ex:
+Without arguments, launches interactive autocomplete search:
 
 ```
-$ gitmoji list apple
-
-🍎 - :apple: - Fixing something on macOS.
-🍏 - :green_apple: - Fixing something on iOS.
+$ gitmoji search
+? Search gitmojis: (type to filter)
 ```
+
+## License
+
+MIT
