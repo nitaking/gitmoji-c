@@ -3,14 +3,14 @@
 ## Prerequisites
 
 - npm アカウントにログイン済み (`npm whoami` で確認)
-- `master` ブランチが最新の状態
+- `main` ブランチが最新の状態
 
 ## Release Steps
 
 ```bash
-# 1. master に切り替え、最新化
-git checkout master
-git pull origin master
+# 1. main に切り替え、最新化
+git checkout main
+git pull origin main
 
 # 2. バージョンを上げる (patch / minor / major)
 npm version patch   # 1.0.0 → 1.0.1
@@ -27,7 +27,7 @@ pnpm audit
 npm publish
 
 # 5. タグとコミットを push
-git push origin master --tags
+git push origin main --tags
 
 # 6. GitHub Release を作成
 gh release create v$(node -p "require('./package.json').version") --generate-notes
