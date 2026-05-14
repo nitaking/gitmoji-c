@@ -1,44 +1,31 @@
-import {Command} from '@oclif/command'
-// import {AutoComplete, prompt} from 'enquirer'
-import * as execa from 'execa'
-import * as inquirer from 'inquirer'
+import {Command} from '@oclif/core'
+import {execa} from 'execa'
+import inquirer from 'inquirer'
+import autocomplete from 'inquirer-autocomplete-prompt'
 
-import {questions} from '../prompt'
+import {questions} from '../prompt.js'
 
-inquirer.registerPrompt(
-  'autocomplete', require('inquirer-autocomplete-prompt')
-)
+inquirer.registerPrompt('autocomplete', autocomplete)
 
 export default class Commit extends Command {
   static description = 'Interactively commit using the prompts'
 
   async run() {
     try {
-      // @ts-ignore
-      const answer = await inquirer.prompt(questions)
+      const answer: any = await inquirer.prompt(questions)
 
       const title = `${answer.gitmoji} ${answer.title}`
       const body = `${answer.message}`
 
       const result = await this.commit(title, body)
       this.log(result)
-    } catch (e) {
-      this.errorMessage(e)
+    } catch (e: any) {
+      this.error(e.message || e, {exit: 2})
     }
   }
 
   private async commit(title: string, message: string) {
-    const {stdout} = await execa('git', [
-      'commit',
-      '-m',
-      title,
-      '-m',
-      message,
-    ])
+    const {stdout} = await execa('git', ['commit', '-m', title, '-m', message])
     return stdout
-  }
-
-  private errorMessage(message: string) {
-    this.error(message, {exit: 2})
   }
 }

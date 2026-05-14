@@ -1,7 +1,7 @@
-import {Command, flags} from '@oclif/command'
+import {Args, Command, Flags} from '@oclif/core'
 import chalk from 'chalk'
 
-import {gitmojis} from '../utils'
+import {gitmojis} from '../utils.js'
 
 interface IGitmoji {
   emoji: string
@@ -13,58 +13,43 @@ interface IGitmoji {
 
 export default class List extends Command {
   static description = 'List all the available gitmojis'
-  static args = [{name: 'search'}]
+
+  static args = {
+    search: Args.string({description: 'search query'}),
+  }
+
   static flags = {
-    search: flags.string({char: 's', description: 'search query'}),
+    search: Flags.string({char: 's', description: 'search query'}),
   }
 
   async run() {
     try {
-      const gitmojis = await this.get()
-      const {args, flags} = this.parse(List)
+      const emojiList = await gitmojis()
+      const {args, flags} = await this.parse(List)
       const query = args.search || flags.search
 
       if (query) {
-        this.search(gitmojis, query)
+        this.search(emojiList, query)
       } else {
-        this.printGitmojis(gitmojis)
+        this.printGitmojis(emojiList)
       }
-    } catch (error) {
-      this.errorMessage(error)
+    } catch (error: any) {
+      this.error(error.message || error, {exit: 2})
     }
   }
 
-  private errorMessage(message: string) {
-    this.error(message, {exit: 2})
-  }
-
-  private printGitmojis(gitmojis: IGitmoji[]) {
-    try {
-      gitmojis.forEach(gitmoji => {
-        const {emoji, code, description} = gitmoji
-        this.log(`${emoji} - ${chalk.blue(code)} - ${description}`)
-      })
-    } catch (error) {
-      this.errorMessage(`gitmoji list not found - ${error.code}`)
+  private printGitmojis(list: IGitmoji[]) {
+    for (const gitmoji of list) {
+      const {emoji, code, description} = gitmoji
+      this.log(`${emoji} - ${chalk.blue(code)} - ${description}`)
     }
   }
 
-  private search(gitmojis: IGitmoji[], query: string) {
-    const filterd = gitmojis.filter((gitmoji: IGitmoji) => {
-      const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
-      return (emoji.indexOf(query.toLowerCase()) !== -1)
+  private search(list: IGitmoji[], query: string) {
+    const filtered = list.filter((gitmoji: IGitmoji) => {
+      const text = gitmoji.name.concat(gitmoji.description).toLowerCase()
+      return text.includes(query.toLowerCase())
     })
-    this.printGitmojis(filterd)
-  }
-
-  private async get() {
-    try {
-      const res = await gitmojis()
-
-      return res
-
-    } catch (error) {
-      this.log(`Network connection not found - ${error.code}`)
-    }
+    this.printGitmojis(filtered)
   }
 }
