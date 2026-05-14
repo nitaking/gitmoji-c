@@ -47,7 +47,7 @@ export default class List extends Command {
 
   private search(list: IGitmoji[], query: string) {
     const filtered = list.filter((gitmoji: IGitmoji) => {
-      const text = gitmoji.name.concat(gitmoji.description).toLowerCase()
+      const text = gitmoji.name.concat(gitmoji.description).concat(gitmoji.code).concat(gitmoji.emoji).toLowerCase()
       return text.includes(query.toLowerCase())
     })
     this.printGitmojis(filtered)

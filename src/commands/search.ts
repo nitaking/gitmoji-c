@@ -34,7 +34,7 @@ export default class Search extends Command {
 
   private staticSearch(list: IGitmoji[], query: string) {
     const filtered = list.filter((g) => {
-      const text = g.name.concat(g.description).toLowerCase()
+      const text = g.name.concat(g.description).concat(g.code).concat(g.emoji).toLowerCase()
       return text.includes(query.toLowerCase())
     })
 
