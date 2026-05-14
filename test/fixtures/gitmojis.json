@@ -1,0 +1,9 @@
+{
+  "gitmojis": [
+    {"emoji": "🎨", "entity": "&#x1f3a8;", "code": ":art:", "description": "Improve structure / format of the code.", "name": "art"},
+    {"emoji": "🐛", "entity": "&#x1f41b;", "code": ":bug:", "description": "Fix a bug.", "name": "bug"},
+    {"emoji": "✨", "entity": "&#x2728;", "code": ":sparkles:", "description": "Introduce new features.", "name": "sparkles"},
+    {"emoji": "📝", "entity": "&#x1f4dd;", "code": ":memo:", "description": "Add or update documentation.", "name": "memo"},
+    {"emoji": "🚀", "entity": "&#x1f680;", "code": ":rocket:", "description": "Deploy stuff.", "name": "rocket"}
+  ]
+}
