@@ -11,6 +11,7 @@ const toChoices = (list: Gitmoji[]): AutoCompleteChoice[] =>
     value: g.emoji,
   }))
 
+/** Configuration for an inquirer prompt question. */
 export interface QuestionConfig {
   name: string
   message: string
@@ -18,6 +19,7 @@ export interface QuestionConfig {
   source?: (answers: unknown, input: string) => Promise<AutoCompleteChoice[]>
 }
 
+/** Interactive prompt questions for gitmoji commit workflow. */
 export const questions: QuestionConfig[] = [
   {
     name: 'gitmoji',
