@@ -1,6 +1,7 @@
 {
   "name": "@nitaking/gitmoji-c",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "A gitmoji interactive CLI tool for conventional commits without GPG dependency.",
   "exports": "./src/mod.ts",
   "publish": {
     "include": ["src/", "LICENSE", "README.md"]
