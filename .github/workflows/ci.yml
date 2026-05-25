@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  test-node:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,3 +25,22 @@ jobs:
       - run: pnpm audit
       - run: ./bin/run --version
       - run: ./bin/run --help
+
+  test-bun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      - run: bun test
+
+  test-deno:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: deno check src/mod.ts
+      - run: deno check src/cli.ts
