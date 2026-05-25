@@ -1,0 +1,26 @@
+[tasks."version:patch"]
+description = "Bump patch version (e.g. 1.0.2 → 1.0.3)"
+run = """
+npm version patch --no-git-tag-version
+VERSION=$(node -p "require('./package.json').version")
+node -e "const f='jsr.json';const j=JSON.parse(require('fs').readFileSync(f));j.version=process.argv[1];require('fs').writeFileSync(f,JSON.stringify(j,null,2)+'\\n')" "$VERSION"
+echo "Bumped to $VERSION"
+"""
+
+[tasks."version:minor"]
+description = "Bump minor version (e.g. 1.0.2 → 1.1.0)"
+run = """
+npm version minor --no-git-tag-version
+VERSION=$(node -p "require('./package.json').version")
+node -e "const f='jsr.json';const j=JSON.parse(require('fs').readFileSync(f));j.version=process.argv[1];require('fs').writeFileSync(f,JSON.stringify(j,null,2)+'\\n')" "$VERSION"
+echo "Bumped to $VERSION"
+"""
+
+[tasks."version:major"]
+description = "Bump major version (e.g. 1.0.2 → 2.0.0)"
+run = """
+npm version major --no-git-tag-version
+VERSION=$(node -p "require('./package.json').version")
+node -e "const f='jsr.json';const j=JSON.parse(require('fs').readFileSync(f));j.version=process.argv[1];require('fs').writeFileSync(f,JSON.stringify(j,null,2)+'\\n')" "$VERSION"
+echo "Bumped to $VERSION"
+"""
