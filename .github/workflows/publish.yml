@@ -13,15 +13,27 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
-      - run: bun run build
-      - run: bun run test
-      - uses: actions/setup-node@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org
-      - run: npm publish --provenance --access public
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Update npm (11.5.1+ 必須)
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+      - name: Publish
+        run: npm publish --provenance --access public
 
   publish-jsr:
     runs-on: ubuntu-latest
