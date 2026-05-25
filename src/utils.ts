@@ -1,29 +1,38 @@
-import axios from 'axios'
-import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'fs'
-import {homedir} from 'os'
-import {join} from 'path'
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs'
+import {homedir} from 'node:os'
+import {join} from 'node:path'
+
+export interface Gitmoji {
+  emoji: string
+  entity: string
+  code: string
+  description: string
+  name: string
+}
 
 const CACHE_DIR = join(homedir(), '.gitmoji')
 const CACHE_FILE = join(CACHE_DIR, 'gitmojis.json')
 const REMOTE_URL = 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/packages/gitmojis/src/gitmojis.json'
 
-export const fetchRemoteGitmojis = async () => {
-  const res = await axios.get(REMOTE_URL, {timeout: 5000})
-  return res.data.gitmojis
+export const fetchRemoteGitmojis = async (): Promise<Gitmoji[]> => {
+  const res = await fetch(REMOTE_URL, {signal: AbortSignal.timeout(5000)})
+  if (!res.ok) throw new Error(`Failed to fetch gitmojis: ${res.status}`)
+  const data: {gitmojis: Gitmoji[]} = await res.json()
+  return data.gitmojis
 }
 
-export const saveCache = (data: any[]) => {
+export const saveCache = (data: Gitmoji[]): void => {
   mkdirSync(CACHE_DIR, {recursive: true})
   writeFileSync(CACHE_FILE, JSON.stringify({gitmojis: data}, null, 2))
 }
 
-const loadCache = (): any[] | null => {
+const loadCache = (): Gitmoji[] | null => {
   if (!existsSync(CACHE_FILE)) return null
   const raw = readFileSync(CACHE_FILE, 'utf-8')
-  return JSON.parse(raw).gitmojis
+  return JSON.parse(raw).gitmojis as Gitmoji[]
 }
 
-export const gitmojis = async () => {
+export const gitmojis = async (): Promise<Gitmoji[]> => {
   const cached = loadCache()
   if (cached) return cached
 
