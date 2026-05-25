@@ -1,0 +1,8 @@
+{
+  "name": "@nitaking/gitmoji-c",
+  "version": "1.0.0",
+  "exports": "./src/mod.ts",
+  "publish": {
+    "include": ["src/", "LICENSE", "README.md"]
+  }
+}
