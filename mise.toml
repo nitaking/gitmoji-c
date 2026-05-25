@@ -16,6 +16,14 @@ node -e "const f='jsr.json';const j=JSON.parse(require('fs').readFileSync(f));j.
 echo "Bumped to $VERSION"
 """
 
+[tasks.release]
+description = "Create a GitHub release with auto-generated notes (uses version from package.json)"
+run = """
+VERSION=$(node -p "require('./package.json').version")
+gh release create "v$VERSION" --generate-notes
+echo "Released v$VERSION"
+"""
+
 [tasks."version:major"]
 description = "Bump major version (e.g. 1.0.2 → 2.0.0)"
 run = """
