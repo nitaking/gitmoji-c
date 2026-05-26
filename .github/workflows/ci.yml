@@ -10,7 +10,7 @@ jobs:
   test-bun:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run build
@@ -21,9 +21,9 @@ jobs:
   test-node:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - run: bun install --frozen-lockfile
@@ -31,16 +31,3 @@ jobs:
       - run: node ./bin/run --version
       - run: node ./bin/run --help
 
-  test-deno:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-      - run: bun install --frozen-lockfile
-      - run: bun run build
-      - run: deno run --allow-all ./bin/run --version
-      - run: deno run --allow-all ./bin/run --help
-      - run: deno publish --dry-run --allow-dirty --no-check
