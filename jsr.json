@@ -3,6 +3,7 @@
   "version": "1.0.7",
   "description": "A gitmoji interactive CLI tool for conventional commits without GPG dependency.",
   "exports": "./src/mod.ts",
+  "unstable": ["sloppy-imports"],
   "publish": {
     "include": [
       "src/",
