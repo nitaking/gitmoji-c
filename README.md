@@ -4,6 +4,10 @@
 
 # gitmoji-c
 
+> [!WARNING]
+> This project is archived and no longer maintained.
+> [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli) no longer signs commits with GPG by default, so please use it instead.
+
 gitmoji-c is a [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli) clone tool that does not use gpg.
 
 ![2019-06-21 09 44 06](https://user-images.githubusercontent.com/10850034/59889833-35d0be80-9409-11e9-93b1-dd76da26d442.gif)
